@@ -1,12 +1,16 @@
 import {
+  Code,
   Combine,
   FileImage,
   FileText,
+  KeyRound,
   Maximize,
+  Palette,
   Ruler,
   Scale,
   Split,
   Thermometer,
+  Type,
   type LucideProps,
 } from "lucide-react";
 import type { IconName } from "@/lib/tools";
@@ -20,6 +24,10 @@ const icons = {
   scale: Scale,
   thermometer: Thermometer,
   area: Maximize,
+  code: Code,
+  palette: Palette,
+  type: Type,
+  key: KeyRound,
 } satisfies Record<IconName, React.ComponentType<LucideProps>>;
 
 export function ToolIcon({

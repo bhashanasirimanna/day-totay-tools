@@ -2,7 +2,7 @@ export const site = {
   name: "Folio",
   tagline: "Free online PDF tools",
   description:
-    "Merge, split and extract PDFs, and convert length, weight, temperature and area online. Free, no signup, no watermarks.",
+    "Merge, split and extract PDFs, and convert units and colors, count words and generate passwords online. Free, no signup, no watermarks.",
   // Set NEXT_PUBLIC_SITE_URL in production so canonicals, sitemap and OG URLs resolve correctly.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://folio-tools.example",
   email: "hello@folio-tools.example",

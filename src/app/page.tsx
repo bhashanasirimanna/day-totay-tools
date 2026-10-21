@@ -4,16 +4,17 @@ import { JsonLd } from "@/components/JsonLd";
 import { ToolCard } from "@/components/ToolCard";
 import { converterNav } from "@/lib/converter-nav";
 import { site } from "@/lib/site";
+import { utilityNav } from "@/lib/utility-nav";
 import { tools } from "@/lib/tools";
 
 export const metadata: Metadata = {
-  title: { absolute: "Free Online Tools: PDF & Unit Converters | Folio" },
+  title: { absolute: "Free Online Tools: PDF, Converters & Developer Tools | Folio" },
   description: site.description,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "/",
-    title: "Free Online Tools: PDF & Unit Converters",
+    title: "Free Online Tools: PDF, Converters & Developer Tools",
     description: site.description,
   },
 };
@@ -58,8 +59,8 @@ export default function Home() {
             Everyday tools, done in a few clicks.
           </h1>
           <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-muted">
-            Merge and split PDFs, or convert length, weight, temperature and
-            area as you type. Free to use, no account, and no watermark.
+            Merge and split PDFs, convert units and colors as you type, count
+            words or generate passwords. Free to use, no account, and no watermark.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
             <a
@@ -74,8 +75,14 @@ export default function Home() {
             >
               Unit converters
             </a>
+            <a
+              href="#dev-tools"
+              className="inline-flex h-12 items-center rounded-xl border border-line-strong bg-surface px-6 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:bg-surface-2"
+            >
+              Developer tools
+            </a>
             <span className="text-sm text-muted">
-              {tools.length + converterNav.length} tools · more on the way
+              {tools.length + converterNav.length + utilityNav.length} tools · more on the way
             </span>
           </div>
         </div>
@@ -129,6 +136,25 @@ export default function Home() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>a]:h-full">
             {converterNav.map((c) => (
               <ToolCard key={c.slug} tool={c} />
+            ))}
+          </div>
+        </section>
+
+        {/* Developer & text tools */}
+        <section id="dev-tools" aria-labelledby="dev-tools-heading" className="scroll-mt-24 pt-24">
+          <h2
+            id="dev-tools-heading"
+            className="font-display text-4xl tracking-tight sm:text-5xl"
+          >
+            Developer &amp; text tools
+          </h2>
+          <p className="mt-3 max-w-[56ch] text-muted">
+            CSS unit and color converters, a word counter and a password
+            generator. Every result has a one-click copy button.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>a]:h-full">
+            {utilityNav.map((u) => (
+              <ToolCard key={u.slug} tool={u} />
             ))}
           </div>
         </section>

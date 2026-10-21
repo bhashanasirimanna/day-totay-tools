@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { converterNav } from "@/lib/converter-nav";
 import { tools } from "@/lib/tools";
+import { utilityNav } from "@/lib/utility-nav";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(site.updated);
@@ -19,6 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.9,
+    })),
+    ...utilityNav.map((u) => ({
+      url: `${site.url}/${u.slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
     ...["about", "contact", "privacy-policy", "terms"].map((p) => ({
       url: `${site.url}/${p}`,

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { converterNav } from "@/lib/converter-nav";
 import { tools } from "@/lib/tools";
+import { utilityNav } from "@/lib/utility-nav";
 import { site } from "@/lib/site";
 import { Wordmark } from "./Header";
 
@@ -18,7 +19,7 @@ export function Footer() {
   return (
     <footer className="mt-24 border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-14 sm:px-8 md:grid-cols-12">
-        <div className="md:col-span-5">
+        <div className="md:col-span-12 lg:col-span-3">
           <Wordmark />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
             Plain, fast PDF tools and unit converters. No account, no watermark, and no software to
@@ -26,22 +27,28 @@ export function Footer() {
           </p>
         </div>
 
-        <nav aria-label="Tools" className="md:col-span-3 md:col-start-7">
-          <h2 className="text-xs font-medium uppercase tracking-[0.1em] text-muted">
-            Tools
-          </h2>
-          <ul className="mt-3">
-            {[...tools, ...converterNav].map((t) => (
-              <li key={t.slug}>
-                <Link href={`/${t.slug}`} className={linkClass}>
-                  {t.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {[
+          { heading: "PDF tools", items: tools },
+          { heading: "Unit converters", items: converterNav },
+          { heading: "Developer & text", items: utilityNav },
+        ].map((group) => (
+          <nav key={group.heading} aria-label={group.heading} className="md:col-span-3 lg:col-span-2">
+            <h2 className="text-xs font-medium uppercase tracking-[0.1em] text-muted">
+              {group.heading}
+            </h2>
+            <ul className="mt-3">
+              {group.items.map((t) => (
+                <li key={t.slug}>
+                  <Link href={`/${t.slug}`} className={linkClass}>
+                    {t.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
 
-        <nav aria-label="Company" className="md:col-span-3">
+        <nav aria-label="Company" className="md:col-span-3 lg:col-span-2">
           <h2 className="text-xs font-medium uppercase tracking-[0.1em] text-muted">
             Company
           </h2>

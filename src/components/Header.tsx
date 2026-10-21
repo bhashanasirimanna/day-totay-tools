@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { converterNav } from "@/lib/converter-nav";
 import { tools } from "@/lib/tools";
+import { utilityNav } from "@/lib/utility-nav";
 import { site } from "@/lib/site";
 import { ToolIcon } from "./ToolIcon";
 
@@ -12,6 +13,7 @@ import { ToolIcon } from "./ToolIcon";
 const toolGroups = [
   { heading: "PDF tools", items: tools },
   { heading: "Unit converters", items: converterNav },
+  { heading: "Developer & text tools", items: utilityNav },
 ];
 
 export function Wordmark() {
@@ -100,10 +102,14 @@ export function Header() {
               >
                 <div className="mx-auto grid max-h-[calc(100vh-5rem)] max-w-6xl gap-x-10 gap-y-6 overflow-y-auto px-5 py-6 sm:px-8 [grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))]">
                   {toolGroups.map((group) => (
-                    <div key={group.heading}>
+                    <div
+                      key={group.heading}
+                      className={group.items.length > 4 ? "lg:col-span-2" : undefined}
+                    >
                       <p className="px-3 pb-2 text-[11px] font-medium uppercase tracking-[0.1em] text-muted">
                         {group.heading}
                       </p>
+                      <div className={group.items.length > 4 ? "sm:grid sm:grid-cols-2" : undefined}>
                       {group.items.map((t) => (
                         <Link
                           key={t.slug}
@@ -122,6 +128,7 @@ export function Header() {
                           </span>
                         </Link>
                       ))}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -187,8 +194,8 @@ export function Header() {
               <X size={22} strokeWidth={1.5} aria-hidden="true" />
             </button>
           </div>
-          <nav aria-label="Mobile" className="mt-4 flex flex-col">
-            {[...tools, ...converterNav].map((t) => (
+          <nav aria-label="Mobile" className="mt-4 flex flex-col overflow-y-auto">
+            {toolGroups.flatMap((g) => g.items).map((t) => (
               <Link
                 key={t.slug}
                 href={`/${t.slug}`}

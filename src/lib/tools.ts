@@ -6,7 +6,11 @@ export type IconName =
   | "ruler"
   | "scale"
   | "thermometer"
-  | "area";
+  | "area"
+  | "code"
+  | "palette"
+  | "type"
+  | "key";
 
 export interface Tool {
   slug: string;
