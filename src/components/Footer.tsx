@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { converterNav } from "@/lib/converter-nav";
 import { tools } from "@/lib/tools";
 import { site } from "@/lib/site";
 import { Wordmark } from "./Header";
@@ -20,7 +21,7 @@ export function Footer() {
         <div className="md:col-span-5">
           <Wordmark />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
-            Plain, fast PDF tools. No account, no watermark, and no software to
+            Plain, fast PDF tools and unit converters. No account, no watermark, and no software to
             install.
           </p>
         </div>
@@ -30,7 +31,7 @@ export function Footer() {
             Tools
           </h2>
           <ul className="mt-3">
-            {tools.map((t) => (
+            {[...tools, ...converterNav].map((t) => (
               <li key={t.slug}>
                 <Link href={`/${t.slug}`} className={linkClass}>
                   {t.name}

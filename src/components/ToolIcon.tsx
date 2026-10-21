@@ -1,4 +1,14 @@
-import { Combine, FileImage, FileText, Split, type LucideProps } from "lucide-react";
+import {
+  Combine,
+  FileImage,
+  FileText,
+  Maximize,
+  Ruler,
+  Scale,
+  Split,
+  Thermometer,
+  type LucideProps,
+} from "lucide-react";
 import type { IconName } from "@/lib/tools";
 
 const icons = {
@@ -6,6 +16,10 @@ const icons = {
   combine: Combine,
   split: Split,
   "file-image": FileImage,
+  ruler: Ruler,
+  scale: Scale,
+  thermometer: Thermometer,
+  area: Maximize,
 } satisfies Record<IconName, React.ComponentType<LucideProps>>;
 
 export function ToolIcon({

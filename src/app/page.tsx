@@ -2,17 +2,18 @@ import type { Metadata } from "next";
 import { AdSlot } from "@/components/AdSlot";
 import { JsonLd } from "@/components/JsonLd";
 import { ToolCard } from "@/components/ToolCard";
+import { converterNav } from "@/lib/converter-nav";
 import { site } from "@/lib/site";
 import { tools } from "@/lib/tools";
 
 export const metadata: Metadata = {
-  title: { absolute: "Free Online PDF Tools – Merge & Split | Folio" },
+  title: { absolute: "Free Online Tools: PDF & Unit Converters | Folio" },
   description: site.description,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "/",
-    title: "Free Online PDF Tools – Merge & Split",
+    title: "Free Online Tools: PDF & Unit Converters",
     description: site.description,
   },
 };
@@ -52,23 +53,29 @@ export default function Home() {
       <section className="relative overflow-hidden border-b border-line">
         <div aria-hidden="true" className="hero-grid absolute inset-0" />
         <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-8 sm:pb-24 sm:pt-24">
-          <p className="text-sm font-medium text-accent">Free PDF tools</p>
+          <p className="text-sm font-medium text-accent">Free online tools</p>
           <h1 className="mt-5 max-w-3xl font-display text-[2.9rem] leading-[1.02] tracking-tight sm:text-7xl">
-            Every PDF job, handled in a few clicks.
+            Everyday tools, done in a few clicks.
           </h1>
           <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-muted">
-            Merge, split and extract pages. Free to use, no account, and no
-            watermark on your files.
+            Merge and split PDFs, or convert length, weight, temperature and
+            area as you type. Free to use, no account, and no watermark.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
             <a
               href="#tools"
               className="inline-flex h-12 items-center rounded-xl bg-accent px-6 text-[15px] font-medium text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hover"
             >
-              Choose a tool
+              PDF tools
+            </a>
+            <a
+              href="#converters"
+              className="inline-flex h-12 items-center rounded-xl border border-line-strong bg-surface px-6 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:bg-surface-2"
+            >
+              Unit converters
             </a>
             <span className="text-sm text-muted">
-              {tools.length} tools · more on the way
+              {tools.length + converterNav.length} tools · more on the way
             </span>
           </div>
         </div>
@@ -87,6 +94,9 @@ export default function Home() {
             >
               PDF tools
             </h2>
+            <p className="hidden max-w-[36ch] text-right text-sm text-muted sm:block">
+              Merge, split and export pages. Files never leave your device.
+            </p>
           </div>
 
           <div className="mt-8 grid gap-4 lg:grid-cols-12">
@@ -100,6 +110,25 @@ export default function Home() {
               <div key={t.slug} className="lg:col-span-5 [&>a]:h-full">
                 <ToolCard tool={t} />
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Converters */}
+        <section id="converters" aria-labelledby="converters-heading" className="scroll-mt-24 pt-24">
+          <h2
+            id="converters-heading"
+            className="font-display text-4xl tracking-tight sm:text-5xl"
+          >
+            Unit converters
+          </h2>
+          <p className="mt-3 max-w-[56ch] text-muted">
+            Instant results as you type, in both directions. Pick a converter
+            to see formulas and quick tables for the most searched conversions.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>a]:h-full">
+            {converterNav.map((c) => (
+              <ToolCard key={c.slug} tool={c} />
             ))}
           </div>
         </section>
@@ -145,6 +174,13 @@ export default function Home() {
             Join several files into one, pull out just the pages you need, or
             export pages as images for slides and social posts. Every tool is
             free, and none of them asks you to create an account first.
+          </p>
+          <p>
+            Need a quick number instead? The unit converters turn centimeters
+            into feet, kilograms into pounds, Celsius into Fahrenheit and square
+            feet into square meters the moment you type, with the formula and a
+            reference table on each page so you can see how the answer is
+            worked out.
           </p>
         </section>
       </div>

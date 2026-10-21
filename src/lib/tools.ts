@@ -1,4 +1,12 @@
-export type IconName = "file-text" | "combine" | "split" | "file-image";
+export type IconName =
+  | "file-text"
+  | "combine"
+  | "split"
+  | "file-image"
+  | "ruler"
+  | "scale"
+  | "thermometer"
+  | "area";
 
 export interface Tool {
   slug: string;

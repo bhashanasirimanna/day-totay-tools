@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Tool } from "@/lib/tools";
+
+export type CardItem = Pick<Tool, "slug" | "name" | "shortDescription" | "icon">;
 import { ToolIconTile } from "./ToolIcon";
 
 const base =
@@ -10,7 +12,7 @@ export function ToolCard({
   tool,
   variant = "default",
 }: {
-  tool: Tool;
+  tool: CardItem;
   variant?: "default" | "featured" | "compact";
 }) {
   if (variant === "featured") {

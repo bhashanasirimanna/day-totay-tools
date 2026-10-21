@@ -3,9 +3,16 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { converterNav } from "@/lib/converter-nav";
 import { tools } from "@/lib/tools";
 import { site } from "@/lib/site";
 import { ToolIcon } from "./ToolIcon";
+
+/** Add a new group (or tool) here and the mega menu grows by itself. */
+const toolGroups = [
+  { heading: "PDF tools", items: tools },
+  { heading: "Unit converters", items: converterNav },
+];
 
 export function Wordmark() {
   return (
@@ -70,7 +77,7 @@ export function Header() {
 
         {/* Desktop nav */}
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
-          <div ref={dropdownRef} className="relative">
+          <div ref={dropdownRef}>
             <button
               type="button"
               aria-expanded={toolsOpen}
@@ -89,26 +96,35 @@ export function Header() {
             {toolsOpen && (
               <div
                 id={panelId}
-                className="absolute left-0 top-full mt-2 w-80 rounded-2xl border border-line bg-surface p-2 shadow-md"
+                className="absolute inset-x-0 top-full border-b border-line bg-surface shadow-md"
               >
-                {tools.map((t) => (
-                  <Link
-                    key={t.slug}
-                    href={`/${t.slug}`}
-                    onClick={close}
-                    className="flex items-start gap-3 rounded-xl p-3 transition-colors duration-150 hover:bg-surface-2"
-                  >
-                    <span className="mt-0.5 text-accent">
-                      <ToolIcon name={t.icon} size={18} />
-                    </span>
-                    <span>
-                      <span className="block text-sm font-medium">{t.name}</span>
-                      <span className="mt-0.5 block text-xs leading-snug text-muted">
-                        {t.shortDescription}
-                      </span>
-                    </span>
-                  </Link>
-                ))}
+                <div className="mx-auto grid max-h-[calc(100vh-5rem)] max-w-6xl gap-x-10 gap-y-6 overflow-y-auto px-5 py-6 sm:px-8 [grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))]">
+                  {toolGroups.map((group) => (
+                    <div key={group.heading}>
+                      <p className="px-3 pb-2 text-[11px] font-medium uppercase tracking-[0.1em] text-muted">
+                        {group.heading}
+                      </p>
+                      {group.items.map((t) => (
+                        <Link
+                          key={t.slug}
+                          href={`/${t.slug}`}
+                          onClick={close}
+                          className="flex items-start gap-3 rounded-xl p-3 transition-colors duration-150 hover:bg-surface-2"
+                        >
+                          <span className="mt-0.5 text-accent">
+                            <ToolIcon name={t.icon} size={18} />
+                          </span>
+                          <span>
+                            <span className="block text-sm font-medium">{t.name}</span>
+                            <span className="mt-0.5 block text-xs leading-snug text-muted">
+                              {t.shortDescription}
+                            </span>
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
@@ -172,7 +188,7 @@ export function Header() {
             </button>
           </div>
           <nav aria-label="Mobile" className="mt-4 flex flex-col">
-            {tools.map((t) => (
+            {[...tools, ...converterNav].map((t) => (
               <Link
                 key={t.slug}
                 href={`/${t.slug}`}
