@@ -3,15 +3,15 @@ import { ProsePage } from "@/components/ProsePage";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Terms of Use",
+  title: "Terms of Service",
   description: `The terms that apply when you use ${site.name}.`,
-  alternates: { canonical: "/terms" },
+  alternates: { canonical: "/terms-of-service" },
 };
 
-export default function TermsPage() {
+export default function TermsOfServicePage() {
   return (
     <ProsePage
-      title="Terms of Use"
+      title="Terms of Service"
       intro={`Last updated ${site.updated}. By using ${site.name} you agree to these terms.`}
     >
       {/* TODO: have this reviewed by a lawyer before launch. */}

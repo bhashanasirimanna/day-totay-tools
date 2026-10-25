@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import { ConverterLayout } from "@/components/ConverterLayout";
 import { DynamicConverter } from "@/components/DynamicConverter";
-import { JsonLd } from "@/components/JsonLd";
+import { StructuredData } from "@/components/StructuredData";
 import { convert, formatFixed, getUnit } from "@/lib/converters";
 import type { ConverterContent, QuickTable } from "@/lib/converter-content";
 
@@ -64,17 +64,8 @@ export function ConverterPage({ content: c }: { content: ConverterContent }) {
   return (
     <>
       {/* FAQPage JSON-LD is built from the same array that renders the visible FAQ, so markup and page text always match. */}
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: c.faqs.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }}
-      />
+      <StructuredData type="FAQPage" faqs={c.faqs} />
+
 
       <ConverterLayout
         name={c.name}

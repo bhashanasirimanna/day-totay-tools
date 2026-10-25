@@ -2,6 +2,7 @@ import { site } from "@/lib/site";
 import { AdSlot } from "./AdSlot";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { JsonLd } from "./JsonLd";
+import { StructuredData } from "./StructuredData";
 
 /**
  * Page chrome shared by every converter route: breadcrumbs, H1, the three ad
@@ -29,18 +30,7 @@ export function ConverterLayout({
 
   return (
     <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "WebApplication",
-          name: headline,
-          description,
-          url,
-          applicationCategory: "UtilitiesApplication",
-          operatingSystem: "Any",
-          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-        }}
-      />
+      <StructuredData type="SoftwareApplication" name={headline} description={description} slug={slug} />
       <JsonLd
         data={{
           "@context": "https://schema.org",

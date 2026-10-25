@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContactForm } from "@/components/ContactForm";
 import { ProsePage } from "@/components/ProsePage";
 import { site } from "@/lib/site";
 
@@ -22,6 +23,9 @@ export default function ContactPage() {
         </a>
         . We read every message and usually reply within a few working days.
       </p>
+
+      <h2>Send a message</h2>
+      <ContactForm />
 
       <h2>When reporting a problem</h2>
       <p>

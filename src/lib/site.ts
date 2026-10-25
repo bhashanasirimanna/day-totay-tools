@@ -4,7 +4,7 @@ export const site = {
   description:
     "Merge, split and extract PDFs, and convert units and colors, count words and generate passwords online. Free, no signup, no watermarks.",
   // Set NEXT_PUBLIC_SITE_URL in production so canonicals, sitemap and OG URLs resolve correctly.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.toolbunch.tool",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.toolbunch.tools",
   email: "hello@toolbunch.tool",
   // e.g. "ca-pub-1234567890123456". Leave unset to render design placeholders instead of ads.
   adsenseClient: process.env.NEXT_PUBLIC_ADSENSE_CLIENT,

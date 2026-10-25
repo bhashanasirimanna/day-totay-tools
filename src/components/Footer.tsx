@@ -9,7 +9,7 @@ const legal = [
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy-policy", label: "Privacy policy" },
-  { href: "/terms", label: "Terms of use" },
+  { href: "/terms-of-service", label: "Terms of service" },
 ];
 
 const linkClass =
