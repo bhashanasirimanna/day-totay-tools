@@ -3,8 +3,8 @@
 Headless LibreOffice behind a tiny HTTP API. The Next.js site sends PDFs here and gets a `.docx` back.
 
 ```
-docker build -t folio-converter ./converter
-docker run --rm -p 8080:8080 -e ALLOWED_ORIGINS=http://localhost:3000 folio-converter
+docker build -t toolbunch-converter ./converter
+docker run --rm -p 8080:8080 -e ALLOWED_ORIGINS=http://localhost:3000 toolbunch-converter
 ```
 
 Then set `NEXT_PUBLIC_CONVERTER_URL=http://localhost:8080` in `.env.local` and restart `npm run dev`.

@@ -8,7 +8,7 @@ import { utilityNav } from "@/lib/utility-nav";
 import { tools } from "@/lib/tools";
 
 export const metadata: Metadata = {
-  title: { absolute: "Free Online Tools: PDF, Converters & Developer Tools | Folio" },
+  title: { absolute: "Free Online Tools: PDF, Converters & Developer Tools | ToolBunch" },
   description: site.description,
   alternates: { canonical: "/" },
   openGraph: {
@@ -188,11 +188,11 @@ export default function Home() {
 
         {/* Text content */}
         <section className="article-body pt-24" aria-labelledby="about-tools">
-          <h2 id="about-tools">What can you do with Folio?</h2>
+          <h2 id="about-tools">What can you do with ToolBunch?</h2>
           <p>
             PDF is the format people trust for contracts, invoices and reports
             because it looks the same everywhere. That same rigidity makes it
-            awkward the moment you need to change something. Folio gives you the
+            awkward the moment you need to change something. ToolBunch gives you the
             handful of PDF jobs most people actually run into, each on its own
             page, so you can get to the right tool straight from a search.
           </p>
