@@ -14,7 +14,7 @@ export const site = {
     "Merge, split and extract PDFs, and convert units and colors, count words and generate passwords online. Free, no signup, no watermarks.",
   // Set NEXT_PUBLIC_SITE_URL in production so canonicals, sitemap and OG URLs resolve correctly.
   url: resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL),
-  email: "hello@toolbunch.tool",
+  email: "hello@toolbunch.tools",
   // e.g. "ca-pub-1234567890123456". Leave unset to render design placeholders instead of ads.
   adsenseClient: process.env.NEXT_PUBLIC_ADSENSE_CLIENT,
   // Fixed date so builds are deterministic (used for sitemap lastModified and legal pages).

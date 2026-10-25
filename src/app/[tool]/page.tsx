@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { ToolWorkspace } from "@/components/ToolWorkspace";
+import { site } from "@/lib/site";
 import { getTool, tools } from "@/lib/tools";
 
 export function generateStaticParams() {
@@ -25,12 +26,15 @@ export async function generateMetadata({
     alternates: { canonical: `/${tool.slug}` },
     openGraph: {
       type: "website",
+      siteName: site.name,
+      images: ["/opengraph-image"],
       url: `/${tool.slug}`,
       title: tool.seoTitle,
       description: tool.seoDescription,
     },
     twitter: {
       card: "summary_large_image",
+      images: ["/opengraph-image"],
       title: tool.seoTitle,
       description: tool.seoDescription,
     },

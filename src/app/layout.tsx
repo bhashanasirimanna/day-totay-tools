@@ -33,6 +33,14 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "en_US",
     type: "website",
+    url: "/",
+    title: `${site.tagline} | ${site.name}`,
+    description: site.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.tagline} | ${site.name}`,
+    description: site.description,
   },
   robots: { index: true, follow: true },
 };

@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { ConverterLayout } from "@/components/ConverterLayout";
 import { DynamicConverter } from "@/components/DynamicConverter";
 import { StructuredData } from "@/components/StructuredData";
+import { site } from "@/lib/site";
 import { convert, formatFixed, getUnit } from "@/lib/converters";
 import type { ConverterContent, QuickTable } from "@/lib/converter-content";
 
@@ -18,8 +19,8 @@ export function converterMetadata(c: ConverterContent): Metadata {
     description: c.seoDescription,
     keywords: c.keywords,
     alternates: { canonical: `/${c.slug}` },
-    openGraph: { type: "website", url: `/${c.slug}`, title: c.seoTitle, description: c.seoDescription },
-    twitter: { card: "summary_large_image", title: c.seoTitle, description: c.seoDescription },
+    openGraph: { type: "website", siteName: site.name, images: ["/opengraph-image"], url: `/${c.slug}`, title: c.seoTitle, description: c.seoDescription },
+    twitter: { card: "summary_large_image", images: ["/opengraph-image"], title: c.seoTitle, description: c.seoDescription },
   };
 }
 

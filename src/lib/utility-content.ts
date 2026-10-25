@@ -42,7 +42,7 @@ export const utilityContent: Record<string, UtilityContent> = {
   "px-to-vh": {
     slug: "px-to-vh",
     name: "PX to VH Converter",
-    seoTitle: "PX to VH Converter - CSS Viewport Height Calculator",
+    seoTitle: "PX to VH Converter - Viewport Height Calculator",
     seoDescription:
       "Convert pixels to vh instantly. Enter any viewport height and get an accurate CSS vh value, with the formula, a quick table and a one-click copy button.",
     keywords: ["px to vh", "pixels to vh", "px to vh converter", "css viewport height calculator", "px to viewport height"],
@@ -284,7 +284,7 @@ export const utilityContent: Record<string, UtilityContent> = {
   "word-counter": {
     slug: "word-counter",
     name: "Word Counter",
-    seoTitle: "Word Counter - Count Words, Characters & Paragraphs",
+    seoTitle: "Word Counter - Count Words & Characters Online",
     seoDescription:
       "Free online word counter. Count words, characters with and without spaces, sentences and paragraphs in real time as you type or paste text.",
     keywords: ["word counter", "character counter", "word count online", "count words", "paragraph counter", "reading time calculator"],

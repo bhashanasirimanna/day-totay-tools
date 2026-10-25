@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
+    siteName: site.name,
     url: "/",
     title: "Free Online Tools: PDF, Converters & Developer Tools",
     description: site.description,

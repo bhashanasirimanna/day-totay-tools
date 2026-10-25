@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import { ConverterLayout } from "@/components/ConverterLayout";
 import { JsonLd } from "@/components/JsonLd";
+import { StructuredData } from "@/components/StructuredData";
+import { site } from "@/lib/site";
 import { utilityContent, type UtilityContent } from "@/lib/utility-content";
 
 const formulaBox =
@@ -23,8 +25,8 @@ export function utilityMetadata(slug: string): Metadata {
     description: c.seoDescription,
     keywords: c.keywords,
     alternates: { canonical: `/${c.slug}` },
-    openGraph: { type: "website", url: `/${c.slug}`, title: c.seoTitle, description: c.seoDescription },
-    twitter: { card: "summary_large_image", title: c.seoTitle, description: c.seoDescription },
+    openGraph: { type: "website", siteName: site.name, images: ["/opengraph-image"], url: `/${c.slug}`, title: c.seoTitle, description: c.seoDescription },
+    twitter: { card: "summary_large_image", images: ["/opengraph-image"], title: c.seoTitle, description: c.seoDescription },
   };
 }
 
@@ -35,17 +37,7 @@ export function UtilityPage({ slug, tool }: { slug: string; tool: React.ReactNod
   return (
     <>
       {/* FAQPage JSON-LD is built from the same array that renders the visible FAQ. */}
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: c.faqs.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }}
-      />
+      <StructuredData type="FAQPage" faqs={c.faqs} />
       <JsonLd
         data={{
           "@context": "https://schema.org",

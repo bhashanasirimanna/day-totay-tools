@@ -4,6 +4,7 @@ import { site } from "@/lib/site";
 import { AdSlot } from "./AdSlot";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { JsonLd } from "./JsonLd";
+import { StructuredData } from "./StructuredData";
 import { ToolCard } from "./ToolCard";
 
 export function ToolLayout({
@@ -24,29 +25,13 @@ export function ToolLayout({
 
   return (
     <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          name: tool.headline,
-          description: tool.seoDescription,
-          url,
-          applicationCategory: "UtilitiesApplication",
-          operatingSystem: "Any",
-          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-        }}
+      <StructuredData
+        type="SoftwareApplication"
+        name={tool.headline}
+        description={tool.seoDescription}
+        slug={tool.slug}
       />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: tool.faqs.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }}
-      />
+      <StructuredData type="FAQPage" faqs={tool.faqs} />
       <JsonLd
         data={{
           "@context": "https://schema.org",
