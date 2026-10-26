@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter, Instrument_Serif } from "next/font/google";
@@ -56,6 +55,14 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${instrument.variable}`}>
+      <head>
+        {/* Literal tag in the static HTML so AdSense's site-verification crawler can find it. */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8861348228301636"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="flex min-h-dvh flex-col antialiased">
         <ThemeProvider>
           <a
@@ -72,16 +79,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
-
-        {site.adsenseClient && (
-          <Script
-            id="adsense"
-            async
-            strategy="afterInteractive"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${site.adsenseClient}`}
-            crossOrigin="anonymous"
-          />
-        )}
       </body>
     </html>
   );
