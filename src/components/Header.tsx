@@ -1,31 +1,67 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import { useEffect, useId, useRef, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
 import { converterNav } from "@/lib/converter-nav";
 import { tools } from "@/lib/tools";
 import { utilityNav } from "@/lib/utility-nav";
 import { site } from "@/lib/site";
+import type { CardItem } from "./ToolCard";
 import { ToolIcon } from "./ToolIcon";
 
 /** Add a new group (or tool) here and the mega menu grows by itself. */
-const toolGroups = [
+const toolGroups: { heading: string; items: readonly CardItem[] }[] = [
   { heading: "PDF tools", items: tools },
   { heading: "Unit converters", items: converterNav },
-  { heading: "Developer & text tools", items: utilityNav },
+  { heading: "Image, developer & text tools", items: utilityNav },
 ];
 
-export function Wordmark() {
+export function Wordmark({ priority = false }: { priority?: boolean }) {
+  const alt = `${site.name} – free online PDF, converter and developer tools`;
   return (
     <Link
       href="/"
-      className="font-display text-[1.65rem] leading-none tracking-tight"
+      className="flex shrink-0 items-center gap-2"
       aria-label={`${site.name} home`}
     >
-      {site.name}
-      <span className="text-accent">.</span>
+      {/* Light mode: dark-text logo. Swapped with CSS so there is no hydration mismatch. */}
+      <Image
+        src="/white-logo.png"
+        alt={alt}
+        width={599}
+        height={133}
+        priority={priority}
+        className="block h-9 w-auto dark:hidden"
+      />
+      {/* Dark mode: white-text logo. */}
+      <Image
+        src="/dark-logo.png"
+        alt={alt}
+        width={585}
+        height={139}
+        priority={priority}
+        className="hidden h-9 w-auto dark:block"
+      />
     </Link>
+  );
+}
+
+/** Both icons are always rendered; CSS picks one, so the toggle can't hydrate-mismatch. */
+export function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
+  return (
+    <button
+      type="button"
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      aria-label="Toggle light and dark theme"
+      className="inline-flex size-11 items-center justify-center rounded-lg text-muted transition-colors duration-150 hover:text-ink"
+    >
+      <Sun size={18} strokeWidth={1.75} className="hidden dark:block" aria-hidden="true" />
+      <Moon size={18} strokeWidth={1.75} className="block dark:hidden" aria-hidden="true" />
+    </button>
   );
 }
 
@@ -75,7 +111,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/80 backdrop-blur-md supports-[backdrop-filter]:bg-bg/70">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <Wordmark />
+        <Wordmark priority />
 
         {/* Desktop nav */}
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
@@ -147,18 +183,22 @@ export function Header() {
           >
             Contact
           </Link>
+          <ThemeToggle />
         </nav>
 
         {/* Mobile trigger */}
-        <button
-          type="button"
-          aria-label="Open menu"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(true)}
-          className="inline-flex size-11 items-center justify-center rounded-lg text-ink md:hidden"
-        >
-          <Menu size={22} strokeWidth={1.5} aria-hidden="true" />
-        </button>
+        <div className="flex items-center md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(true)}
+            className="inline-flex size-11 items-center justify-center rounded-lg text-ink"
+          >
+            <Menu size={22} strokeWidth={1.5} aria-hidden="true" />
+          </button>
+        </div>
       </div>
 
       {/* Mobile slide-over */}

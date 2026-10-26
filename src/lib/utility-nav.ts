@@ -6,9 +6,25 @@ export interface UtilityNav {
   name: string;
   shortDescription: string;
   icon: IconName;
+  /** Shows a "New" chip on the home page card. */
+  isNew?: boolean;
 }
 
 export const utilityNav: UtilityNav[] = [
+  {
+    slug: "bg-remover",
+    name: "Background Remover",
+    shortDescription: "Remove an image background and download a transparent PNG, right in your browser.",
+    icon: "eraser",
+    isNew: true,
+  },
+  {
+    slug: "image-color-picker",
+    name: "Image Color Picker",
+    shortDescription: "Click anywhere on an image to get its exact HEX and RGB color.",
+    icon: "pipette",
+    isNew: true,
+  },
   {
     slug: "px-to-vh",
     name: "PX to VH",

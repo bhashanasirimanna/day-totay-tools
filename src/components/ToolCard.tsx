@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Tool } from "@/lib/tools";
 
-export type CardItem = Pick<Tool, "slug" | "name" | "shortDescription" | "icon">;
+export type CardItem = Pick<Tool, "slug" | "name" | "shortDescription" | "icon"> & { isNew?: boolean };
 import { ToolIconTile } from "./ToolIcon";
 
 const base =
@@ -24,7 +24,7 @@ export function ToolCard({
         <div>
           <div className="flex items-start justify-between">
             <ToolIconTile name={tool.icon} large />
-            <span className="rounded-full border border-line px-2.5 py-1 text-xs font-medium text-muted">
+            <span className="rounded-full border border-brand-orange/20 bg-brand-orange/10 px-2.5 py-1 text-xs font-medium text-brand-orange">
               Most used
             </span>
           </div>
@@ -64,12 +64,18 @@ export function ToolCard({
     <Link href={`/${tool.slug}`} className={`${base} gap-6 p-6`}>
       <div className="flex items-start justify-between">
         <ToolIconTile name={tool.icon} />
-        <ArrowUpRight
-          size={18}
-          strokeWidth={1.5}
-          className="text-muted opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
-          aria-hidden="true"
-        />
+        {tool.isNew ? (
+          <span className="rounded-full border border-brand-orange/20 bg-brand-orange/10 px-2.5 py-1 text-xs font-medium text-brand-orange">
+            New
+          </span>
+        ) : (
+          <ArrowUpRight
+            size={18}
+            strokeWidth={1.5}
+            className="text-muted opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+            aria-hidden="true"
+          />
+        )}
       </div>
       <div>
         <h3 className="font-display text-2xl tracking-tight">{tool.name}</h3>

@@ -55,7 +55,7 @@ export default function Home() {
       <section className="relative overflow-hidden border-b border-line">
         <div aria-hidden="true" className="hero-grid absolute inset-0" />
         <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-8 sm:pb-24 sm:pt-24">
-          <p className="text-sm font-medium text-accent">Free online tools</p>
+          <p className="text-sm font-semibold text-brand-blue">Free online tools</p>
           <h1 className="mt-5 max-w-3xl font-display text-[2.9rem] leading-[1.02] tracking-tight sm:text-7xl">
             Everyday tools, done in a few clicks.
           </h1>
@@ -66,21 +66,21 @@ export default function Home() {
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
             <a
               href="#tools"
-              className="inline-flex h-12 items-center rounded-xl bg-accent px-6 text-[15px] font-medium text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hover"
+              className="inline-flex h-12 items-center rounded-xl border-none bg-brand-blue px-6 text-[15px] font-medium text-white shadow-sm transition-colors duration-150 hover:bg-blue-700"
             >
               PDF tools
             </a>
             <a
               href="#converters"
-              className="inline-flex h-12 items-center rounded-xl border border-line-strong bg-surface px-6 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:bg-surface-2"
+              className="inline-flex h-12 items-center rounded-xl border border-line-strong bg-surface px-6 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:border-brand-blue/50 hover:bg-brand-blue/10"
             >
               Unit converters
             </a>
             <a
               href="#dev-tools"
-              className="inline-flex h-12 items-center rounded-xl border border-line-strong bg-surface px-6 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:bg-surface-2"
+              className="inline-flex h-12 items-center rounded-xl border border-line-strong bg-surface px-6 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:border-brand-blue/50 hover:bg-brand-blue/10"
             >
-              Developer tools
+              Image &amp; developer tools
             </a>
             <span className="text-sm text-muted">
               {tools.length + converterNav.length + utilityNav.length} tools · more on the way
@@ -147,11 +147,12 @@ export default function Home() {
             id="dev-tools-heading"
             className="font-display text-4xl tracking-tight sm:text-5xl"
           >
-            Developer &amp; text tools
+            Image, developer &amp; text tools
           </h2>
           <p className="mt-3 max-w-[56ch] text-muted">
-            CSS unit and color converters, a word counter and a password
-            generator. Every result has a one-click copy button.
+            A background remover and image color picker that run in your
+            browser, plus CSS unit and color converters, a word counter and a
+            password generator.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>a]:h-full">
             {utilityNav.map((u) => (

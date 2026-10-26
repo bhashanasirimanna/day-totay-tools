@@ -10,7 +10,9 @@ export type IconName =
   | "code"
   | "palette"
   | "type"
-  | "key";
+  | "key"
+  | "eraser"
+  | "pipette";
 
 export interface Tool {
   slug: string;

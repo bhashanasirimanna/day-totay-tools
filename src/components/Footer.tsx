@@ -30,7 +30,7 @@ export function Footer() {
         {[
           { heading: "PDF tools", items: tools },
           { heading: "Unit converters", items: converterNav },
-          { heading: "Developer & text", items: utilityNav },
+          { heading: "Image, dev & text", items: utilityNav },
         ].map((group) => (
           <nav key={group.heading} aria-label={group.heading} className="md:col-span-3 lg:col-span-2">
             <h2 className="text-xs font-medium uppercase tracking-[0.1em] text-muted">

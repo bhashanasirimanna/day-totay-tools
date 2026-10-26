@@ -356,4 +356,92 @@ export const utilityContent: Record<string, UtilityContent> = {
       { q: "Why does each password include every type I picked?", a: "The generator guarantees at least one character from each selected type, because many sites require it, then shuffles the result." },
     ],
   },
+  "bg-remover": {
+    slug: "bg-remover",
+    name: "Image Background Remover",
+    seoTitle: "Background Remover - Free Transparent PNG",
+    seoDescription:
+      "Remove the background from any image for free and download a transparent PNG. Runs in your browser, so your photo is never uploaded. No signup.",
+    keywords: [
+      "background remover",
+      "remove background from image",
+      "transparent background maker",
+      "remove bg free",
+      "png background remover",
+    ],
+    intro:
+      "Upload a photo and get a transparent PNG in seconds. The AI runs inside your browser, so your image never leaves your device.",
+    what: {
+      heading: "What is an image background remover?",
+      paragraphs: [
+        "A background remover separates the subject of a photo, such as a person, product or pet, from everything behind it and makes the rest transparent. The result is a PNG cut-out you can place on any color, scene or design without the original backdrop.",
+        "It is useful for product listings, profile pictures, presentations, thumbnails, stickers and quick mock-ups. Doing this by hand with a selection tool takes a long time, especially around hair and fine edges. An AI model finds the subject automatically and does the same job in a few seconds.",
+      ],
+    },
+    steps: [
+      { title: "Add your image", body: "Drag a PNG, JPG or WebP file onto the upload area, or click it to choose a file from your device. Images up to 20 MB are supported." },
+      { title: "Wait a few seconds", body: "The first time you use the tool, the AI model downloads once and is then cached by your browser. After that the background is removed on your own device." },
+      { title: "Compare and download", body: "The original and the cut-out appear side by side, with the transparent areas shown as a checkerboard. Press Download Transparent PNG to save the result." },
+    ],
+    formulas: {
+      heading: "Privacy: your image is processed in your browser",
+      paragraphs: [
+        "Your photo is never uploaded to our servers or to any third party. The background is removed by an AI model that runs locally in your browser using WebAssembly, so there is no account, no upload queue and no copy of your image stored anywhere.",
+        "The only network request is the one-time download of the model files, which contain no information about you or your images. Close the tab and the image is gone. Because everything runs on your device, speed depends on your hardware, and large photos take a little longer on older phones.",
+      ],
+      formulas: [],
+    },
+    faqs: [
+      { q: "Is the background remover really free?", a: "Yes. There is no sign-up, no watermark and no limit on how many images you process. The site is supported by advertising." },
+      { q: "Are my photos uploaded anywhere?", a: "No. The AI model runs in your browser, so your image stays on your device. Only the model files are downloaded, once, and your browser then caches them." },
+      { q: "Why does the first image take longer?", a: "On first use the tool downloads the model (about 40 MB). It is cached afterwards, so later images start processing straight away, even on a slower connection." },
+      { q: "What image formats can I use?", a: "PNG, JPG and WebP images up to 20 MB. The result is always a PNG, because it is the format that keeps transparent areas." },
+      { q: "Which images work best?", a: "Photos with a clear subject and a visible edge between the subject and the background, such as portraits and products. Very busy scenes or subjects that blend into the backdrop can leave rough edges." },
+      { q: "Can I use the cut-out commercially?", a: "The tool does not claim any rights to your images. You are responsible for having the right to use the original photo and to publish the result." },
+    ],
+  },
+  "image-color-picker": {
+    slug: "image-color-picker",
+    name: "Image Color Picker",
+    seoTitle: "Image Color Picker - HEX & RGB from a Photo",
+    seoDescription:
+      "Upload an image and click anywhere to get the exact HEX and RGB color. Free online eyedropper with one-click copy. Works in your browser, nothing is uploaded.",
+    keywords: [
+      "image color picker",
+      "color picker from image",
+      "get color from image",
+      "hex color from photo",
+      "online eyedropper",
+    ],
+    intro:
+      "Upload a picture, then click or tap any spot to read its exact color. Copy the HEX or RGB code with one click.",
+    what: {
+      heading: "What is an image color picker?",
+      paragraphs: [
+        "An image color picker, also called an online eyedropper, reads the color of a single pixel in a picture and tells you its code. Instead of guessing a shade by eye, you point at it and get the exact value.",
+        "Designers and developers use it to match a brand color from a logo, build a palette from a photograph, copy a shade from a screenshot, or check that a color in a mock-up matches the final design. The values are given as HEX, the format used in CSS and design tools, and as RGB, the red, green and blue levels from 0 to 255.",
+      ],
+    },
+    steps: [
+      { title: "Upload an image", body: "Drag a PNG, JPG or WebP file onto the upload area or click it to choose one. Screenshots, logos and photos all work." },
+      { title: "Hover or click to pick", body: "Move your mouse over the image to preview the color under the cursor, then click to pick it. On a touch screen, tap the spot. Keyboard users can focus the image, move with the arrow keys and press Enter." },
+      { title: "Copy the color code", body: "The large swatch shows the picked color with its HEX and RGB values. Press Copy next to either one to paste it into your CSS, design file or document." },
+    ],
+    formulas: {
+      heading: "Privacy: your image is processed in your browser",
+      paragraphs: [
+        "The image is drawn onto an HTML canvas on your own device and the color is read from there. Nothing is uploaded, nothing is stored, and no network request is made when you use the picker, so private screenshots and unreleased designs stay private.",
+        "Colors are read from the image at its original resolution, so you get the exact pixel value even when the preview is scaled down to fit your screen. If you pick a pixel that is partly transparent, the tool shows its color and tells you so.",
+      ],
+      formulas: ["HEX = #RRGGBB, where each pair is a value from 00 to FF", "RGB = rgb(red, green, blue), each from 0 to 255"],
+    },
+    faqs: [
+      { q: "How do I get the HEX code of a color in an image?", a: "Upload the image, click the spot you want, and the HEX code appears next to the color swatch. Press Copy HEX to put it on your clipboard." },
+      { q: "Is the color exact?", a: "Yes. The tool reads the pixel you click at the image's full resolution. Note that JPG compression can slightly change colors near edges, so click in a flat area for the truest value." },
+      { q: "Is my image uploaded?", a: "No. The picker runs entirely in your browser, so your image never leaves your device." },
+      { q: "Can I pick colors on a phone?", a: "Yes. Tap anywhere on the image to pick that color. The preview on hover is for mouse users, since touch screens have no hover." },
+      { q: "What is the difference between HEX and RGB?", a: "They describe the same color in two ways. HEX is a six-digit code such as #2563EB used in CSS, and RGB lists the red, green and blue levels from 0 to 255, such as rgb(37, 99, 235)." },
+      { q: "Which image formats are supported?", a: "PNG, JPG and WebP images up to 20 MB. For the most accurate colors, use a PNG or the original uncompressed image." },
+    ],
+  },
 };

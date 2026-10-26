@@ -1,11 +1,13 @@
 import {
   Code,
+  Eraser,
   Combine,
   FileImage,
   FileText,
   KeyRound,
   Maximize,
   Palette,
+  Pipette,
   Ruler,
   Scale,
   Split,
@@ -28,6 +30,8 @@ const icons = {
   palette: Palette,
   type: Type,
   key: KeyRound,
+  eraser: Eraser,
+  pipette: Pipette,
 } satisfies Record<IconName, React.ComponentType<LucideProps>>;
 
 export function ToolIcon({
