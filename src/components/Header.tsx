@@ -57,7 +57,7 @@ export function ThemeToggle() {
       type="button"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       aria-label="Toggle light and dark theme"
-      className="inline-flex size-11 items-center justify-center rounded-lg text-muted transition-colors duration-150 hover:text-ink"
+      className="inline-flex size-11 items-center justify-center rounded-lg bg-transparent text-muted transition-colors duration-150 hover:text-ink"
     >
       <Sun size={18} strokeWidth={1.75} className="hidden dark:block" aria-hidden="true" />
       <Moon size={18} strokeWidth={1.75} className="block dark:hidden" aria-hidden="true" />
@@ -187,14 +187,14 @@ export function Header() {
         </nav>
 
         {/* Mobile trigger */}
-        <div className="flex items-center md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
           <button
             type="button"
             aria-label="Open menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(true)}
-            className="inline-flex size-11 items-center justify-center rounded-lg text-ink"
+            className="inline-flex size-11 items-center justify-center rounded-lg bg-transparent text-ink"
           >
             <Menu size={22} strokeWidth={1.5} aria-hidden="true" />
           </button>
