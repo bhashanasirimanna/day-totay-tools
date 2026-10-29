@@ -11,6 +11,7 @@ export type IconName =
   | "palette"
   | "type"
   | "key"
+  | "sparkles"
   | "eraser"
   | "pipette";
 

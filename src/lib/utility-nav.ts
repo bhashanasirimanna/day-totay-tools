@@ -12,6 +12,13 @@ export interface UtilityNav {
 
 export const utilityNav: UtilityNav[] = [
   {
+    slug: "ai-humanizer",
+    name: "AI Humanizer",
+    shortDescription: "Rewrite AI-generated text so it sounds natural, human and on-tone.",
+    icon: "sparkles",
+    isNew: true,
+  },
+  {
     slug: "bg-remover",
     name: "Background Remover",
     shortDescription: "Remove an image background and download a transparent PNG, right in your browser.",

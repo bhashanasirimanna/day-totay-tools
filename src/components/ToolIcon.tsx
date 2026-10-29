@@ -10,6 +10,7 @@ import {
   Pipette,
   Ruler,
   Scale,
+  Sparkles,
   Split,
   Thermometer,
   Type,
@@ -32,6 +33,7 @@ const icons = {
   key: KeyRound,
   eraser: Eraser,
   pipette: Pipette,
+  sparkles: Sparkles,
 } satisfies Record<IconName, React.ComponentType<LucideProps>>;
 
 export function ToolIcon({

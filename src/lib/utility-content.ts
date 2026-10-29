@@ -39,6 +39,57 @@ const vhToPxRows = [1, 10, 25, 50, 75, 100].map((vh) => [
 ]);
 
 export const utilityContent: Record<string, UtilityContent> = {
+  "ai-humanizer": {
+    slug: "ai-humanizer",
+    name: "AI Humanizer",
+    seoTitle: "AI Humanizer - Make AI Text Sound 100% Human",
+    seoDescription:
+      "Rewrite AI-generated text so it sounds natural and human-written. Free AI humanizer with tone control, live word counts and one-click copy. No sign-up.",
+    keywords: [
+      "ai humanizer",
+      "humanize ai text",
+      "make ai text sound human",
+      "ai text humanizer free",
+      "rewrite ai text",
+      "bypass ai detector",
+    ],
+    intro:
+      "Paste text written by ChatGPT or another AI, pick a tone, and get a version that reads like a real person wrote it. Same meaning, more natural voice.",
+    what: {
+      heading: "What is an AI Humanizer?",
+      paragraphs: [
+        "An AI humanizer is a writing tool that rewrites machine-generated text so it sounds like it came from a person. AI models tend to write in a very even, polished way: similar sentence lengths, stock transitions such as “furthermore” and “moreover”, and tidy summaries that repeat what was just said. Readers notice this flatness even when they cannot say why.",
+        "This tool uses a large language model, prompted to act as an experienced copywriter, to rewrite your draft. It varies sentence length and structure, swaps overused AI words for plain ones, and adjusts the voice to the tone you choose, all while keeping your facts, names, numbers and meaning intact.",
+        "Typical uses include polishing blog posts, emails, product descriptions and essay drafts that began life as AI output. It is an editing aid, not a guarantee: no tool can promise that every AI detector will pass a text, so always read the result and make it your own.",
+      ],
+    },
+    steps: [
+      { title: "Paste your text", body: "Drop the AI-generated draft into the input box. The live counter shows words and characters, and the limit is 5,000 characters per request." },
+      { title: "Choose a tone", body: "Pick Professional for work writing, Casual for a friendly voice, Engaging for lively blog-style copy, or Academic for a formal, measured register." },
+      { title: "Humanize and copy", body: "Press Humanize Text and wait a few seconds. Read the result, tweak anything you like, then press Copy to Clipboard to use it elsewhere." },
+    ],
+    formulas: {
+      heading: "How to make AI text sound human",
+      paragraphs: [
+        "Even without a tool, a few editing habits go a long way. The tool automates them, but knowing them helps you finish the job by hand.",
+        "Vary your rhythm: mix short sentences with longer ones, and do not start every sentence the same way. Cut filler words and stock phrases such as “delve into”, “in today’s fast-paced world” and “it is important to note”. Prefer concrete detail, a specific example or a real opinion over general statements. Use contractions where the tone allows, and let the occasional question or fragment break the pattern. Finally, read the text aloud: if it sounds stiff, a person would not have written it that way.",
+      ],
+      formulas: [
+        "Vary sentence length: short + medium + long",
+        "Replace stock phrases with plain words",
+        "Add one specific detail or opinion per paragraph",
+      ],
+    },
+    faqs: [
+      { q: "What does an AI humanizer do?", a: "It rewrites AI-generated text so it reads more naturally, with varied sentence structure, plainer word choices and a consistent tone, while keeping the original meaning." },
+      { q: "Will it bypass AI detectors?", a: "It is designed to remove the patterns that detectors and readers associate with machine writing, but no tool can guarantee a pass. Detectors disagree with each other and change often, so review and personalize the final text." },
+      { q: "Is the AI humanizer free?", a: "Yes. There is no sign-up and no watermark. The site is supported by advertising, and fair-use limits may apply when the service is busy." },
+      { q: "Does it change the meaning of my text?", a: "It is instructed to keep your facts, names, numbers and key points. Still, always proofread the output, especially for technical or legal content." },
+      { q: "Is my text stored?", a: "ToolBunch does not store the text you submit. It is sent securely to our AI provider only to generate the rewrite, so avoid pasting confidential or personal information." },
+      { q: "How much text can I humanize at once?", a: "Up to 5,000 characters per request, which is roughly 800 words. For longer documents, process them in sections." },
+      { q: "Which tone should I choose?", a: "Professional suits emails and reports, Casual suits social posts and chatty blogs, Engaging suits marketing copy, and Academic suits essays and formal writing." },
+    ],
+  },
   "px-to-vh": {
     slug: "px-to-vh",
     name: "PX to VH Converter",
