@@ -81,7 +81,10 @@ function ScoreMeter({ score }: { score: number }) {
       <div className="flex flex-col justify-center gap-1">
         <p className="text-xs font-medium uppercase tracking-[0.08em] text-muted">AI score</p>
         <p className={`text-2xl font-bold leading-tight ${c.text}`}>{score}% AI-generated</p>
-        <p className="text-sm text-muted">{verdict(score)}</p>
+        <p className="text-sm text-muted">
+          Breakdown: <span className="font-medium text-ink">{score}% AI</span> ·{" "}
+          <span className="font-medium text-ink">{100 - score}% human</span>
+        </p>
       </div>
     </div>
   );
