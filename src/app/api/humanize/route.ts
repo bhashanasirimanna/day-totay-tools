@@ -1,6 +1,7 @@
 import Groq from "groq-sdk";
 
-const MODEL = "llama-3.3-70b-versatile";
+// Groq retires models over time; override with GROQ_MODEL without a code change.
+const MODEL = process.env.GROQ_MODEL || "openai/gpt-oss-120b";
 const MAX_CHARS = 5000;
 const TONES = ["Professional", "Casual", "Engaging", "Academic"] as const;
 type Tone = (typeof TONES)[number];
@@ -55,7 +56,9 @@ export async function POST(request: Request) {
       model: MODEL,
       temperature: 0.9,
       top_p: 0.95,
-      max_tokens: 4096,
+      // Reasoning tokens count toward this budget, so keep effort low and the cap generous.
+      reasoning_effort: "low",
+      max_completion_tokens: 8192,
       messages: [
         { role: "system", content: systemPrompt(tone) },
         { role: "user", content: text },
