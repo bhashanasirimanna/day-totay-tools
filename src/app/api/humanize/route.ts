@@ -1,7 +1,11 @@
 import Groq from "groq-sdk";
 
-// Groq retires models over time; override with GROQ_MODEL without a code change.
-const MODEL = process.env.GROQ_MODEL || "openai/gpt-oss-120b";
+// Tried in order. Groq retires models over time, so a failure moves on to the next one.
+// GROQ_MODEL, if set, is tried first.
+const MODELS = [
+  ...new Set([process.env.GROQ_MODEL, "openai/gpt-oss-120b", "openai/gpt-oss-20b"].filter((m): m is string => Boolean(m))),
+];
+const REQUEST_TIMEOUT_MS = 25_000;
 const MAX_CHARS = 5000;
 const TONES = ["Professional", "Casual", "Engaging", "Academic"] as const;
 type Tone = (typeof TONES)[number];
@@ -50,29 +54,32 @@ export async function POST(request: Request) {
   if (!text) return fail("Please enter some text to humanize.", 400);
   if (text.length > MAX_CHARS) return fail(`Text is too long. The limit is ${MAX_CHARS} characters.`, 413);
 
-  try {
-    const groq = new Groq({ apiKey });
-    const completion = await groq.chat.completions.create({
-      model: MODEL,
-      temperature: 0.9,
-      top_p: 0.95,
-      // Reasoning tokens count toward this budget, so keep effort low and the cap generous.
-      reasoning_effort: "low",
-      max_completion_tokens: 8192,
-      messages: [
-        { role: "system", content: systemPrompt(tone) },
-        { role: "user", content: text },
-      ],
-    });
+  // maxRetries 0: a failing model should fall through to the next one, not stall on SDK retries.
+  const groq = new Groq({ apiKey, maxRetries: 0, timeout: REQUEST_TIMEOUT_MS });
 
-    const result = completion.choices[0]?.message?.content?.trim();
-    if (!result) return fail("The model returned an empty response. Please try again.", 502);
-    return Response.json({ result });
-  } catch (err) {
-    const status = typeof err === "object" && err && "status" in err ? Number(err.status) : 0;
-    if (status === 429) return fail("We're getting a lot of requests right now. Please wait a moment and try again.", 429);
-    if (status === 401 || status === 403) return fail("The humanizer is not configured correctly. Please try again later.", 503);
-    console.error("humanize failed", err instanceof Error ? err.message : err);
-    return fail("Something went wrong while humanizing your text. Please try again.", 500);
+  for (const model of MODELS) {
+    try {
+      const completion = await groq.chat.completions.create({
+        model,
+        temperature: 0.9,
+        top_p: 0.95,
+        // Reasoning tokens count toward this budget, so keep effort low and the cap generous.
+        reasoning_effort: "low",
+        max_completion_tokens: 8192,
+        messages: [
+          { role: "system", content: systemPrompt(tone) },
+          { role: "user", content: text },
+        ],
+      });
+
+      const result = completion.choices[0]?.message?.content?.trim();
+      if (result) return Response.json({ result });
+      console.warn(`humanize: ${model} returned an empty response, trying next model`);
+    } catch (err) {
+      const status = typeof err === "object" && err && "status" in err ? err.status : "n/a";
+      console.warn(`humanize: ${model} failed (status ${status}), trying next model`, err instanceof Error ? err.message : err);
+    }
   }
+
+  return fail("The humanizer is temporarily unavailable. Please try again in a moment.", 500);
 }
