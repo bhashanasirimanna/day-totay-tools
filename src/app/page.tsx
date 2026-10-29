@@ -88,29 +88,32 @@ export default function Home() {
             Merge and split PDFs, convert units and colors as you type, count
             words or generate passwords. Free to use, no account, and no watermark.
           </p>
-          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <a
-              href="#tools"
-              className="inline-flex h-12 items-center rounded-xl border-none bg-brand-blue px-6 text-[15px] font-medium text-white shadow-sm transition-colors duration-150 hover:bg-blue-700"
-            >
-              PDF tools
-            </a>
-            <a
-              href="#converters"
-              className="inline-flex h-12 items-center rounded-xl border border-line-strong bg-surface px-6 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:border-brand-blue/50 hover:bg-brand-blue/10"
-            >
-              Unit converters
-            </a>
-            <a
-              href="#ai-tools"
-              className="inline-flex h-12 items-center rounded-xl border border-line-strong bg-surface px-6 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:border-brand-blue/50 hover:bg-brand-blue/10"
-            >
-              AI, image &amp; developer tools
-            </a>
-            <span className="text-sm text-muted">
+          <nav aria-label="Jump to a tool group" className="mt-9">
+            {/* Stacked and full width on phones, a wrapping row from sm up. */}
+            <div className="grid gap-3 sm:flex sm:flex-wrap">
+              <a
+                href="#tools"
+                className="inline-flex h-12 items-center justify-center rounded-xl border-none bg-brand-blue px-6 text-[15px] font-medium text-white shadow-sm transition-colors duration-150 hover:bg-blue-700"
+              >
+                PDF tools
+              </a>
+              <a
+                href="#converters"
+                className="inline-flex h-12 items-center justify-center rounded-xl border border-line-strong bg-surface px-6 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:border-brand-blue/50 hover:bg-brand-blue/10"
+              >
+                Unit converters
+              </a>
+              <a
+                href="#ai-tools"
+                className="inline-flex h-12 items-center justify-center rounded-xl border border-line-strong bg-surface px-6 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:border-brand-blue/50 hover:bg-brand-blue/10"
+              >
+                AI, image &amp; dev tools
+              </a>
+            </div>
+            <p className="mt-5 text-sm text-muted">
               {tools.length + converterNav.length + utilityNav.length} tools · more on the way
-            </span>
-          </div>
+            </p>
+          </nav>
         </div>
       </section>
 

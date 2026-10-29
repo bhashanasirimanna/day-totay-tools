@@ -135,11 +135,11 @@ export function ImageFlipper() {
 
       <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <button type="button" onClick={flipHorizontal} className={button}>
-          <FlipHorizontal2 size={18} strokeWidth={1.5} aria-hidden="true" />
+          <FlipVertical2 size={18} strokeWidth={1.5} aria-hidden="true" />
           Flip horizontal
         </button>
         <button type="button" onClick={flipVertical} className={button}>
-          <FlipVertical2 size={18} strokeWidth={1.5} aria-hidden="true" />
+          <FlipHorizontal2 size={18} strokeWidth={1.5} aria-hidden="true" />
           Flip vertical
         </button>
         <button type="button" onClick={() => rotate(-90)} className={button}>

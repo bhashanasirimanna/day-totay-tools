@@ -20,6 +20,9 @@
   --warn-ink: #6b4e0b;
   --danger: #a3261d;
   --danger-soft: #fbe9e7;
+  --ok: #16a34a;
+  --caution: #ca8a04;
+  --ok-soft: #e3f4e8;
   --shadow-sm: 0 1px 2px rgb(17 17 17 / 0.04), 0 1px 1px rgb(17 17 17 / 0.03);
   --shadow-md: 0 1px 2px rgb(17 17 17 / 0.04), 0 8px 24px -8px rgb(17 17 17 / 0.1);
 }
@@ -41,6 +44,9 @@
   --warn-ink: #e8cd85;
   --danger: #f08a80;
   --danger-soft: #2d1816;
+  --ok: #4ade80;
+  --caution: #facc15;
+  --ok-soft: #12261a;
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
   --shadow-md: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -8px rgb(0 0 0 / 0.6);
 }
@@ -63,6 +69,9 @@
   --color-warn-ink: var(--warn-ink);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
+  --color-ok: var(--ok);
+  --color-caution: var(--caution);
+  --color-ok-soft: var(--ok-soft);
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
