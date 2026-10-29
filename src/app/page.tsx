@@ -35,6 +35,31 @@ const principles = [
   },
 ];
 
+/** Every utilityNav slug should appear in exactly one group, or its card is missing from the home page. */
+const toolGroups = [
+  {
+    id: "ai-tools",
+    heading: "AI & content tools",
+    description:
+      "AI-powered writing help and text analysis: rewrite machine-written drafts so they sound human, and count words, characters and reading time as you type.",
+    slugs: ["ai-humanizer", "word-counter"],
+  },
+  {
+    id: "image-tools",
+    heading: "Image tools",
+    description:
+      "Image utilities that run in your browser, so your pictures stay on your device: cut out a background or pick exact colors from any photo.",
+    slugs: ["bg-remover", "image-color-picker"],
+  },
+  {
+    id: "dev-tools",
+    heading: "Developer & CSS tools",
+    description:
+      "Everyday helpers for front-end work: one CSS unit converter for px, rem, vh and vw, one color converter for HEX and RGB, and a strong password generator.",
+    slugs: ["css-unit-converter", "color-converter", "password-generator"],
+  },
+];
+
 export default function Home() {
   const featured = tools.find((t) => t.featured) ?? tools[0];
   const rest = tools.filter((t) => t.slug !== featured.slug);
@@ -77,10 +102,10 @@ export default function Home() {
               Unit converters
             </a>
             <a
-              href="#dev-tools"
+              href="#ai-tools"
               className="inline-flex h-12 items-center rounded-xl border border-line-strong bg-surface px-6 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:border-brand-blue/50 hover:bg-brand-blue/10"
             >
-              Image &amp; developer tools
+              AI, image &amp; developer tools
             </a>
             <span className="text-sm text-muted">
               {tools.length + converterNav.length + utilityNav.length} tools · more on the way
@@ -141,25 +166,25 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Developer & text tools */}
-        <section id="dev-tools" aria-labelledby="dev-tools-heading" className="scroll-mt-24 pt-24">
-          <h2
-            id="dev-tools-heading"
-            className="font-display text-4xl tracking-tight sm:text-5xl"
-          >
-            Image, developer &amp; text tools
-          </h2>
-          <p className="mt-3 max-w-[56ch] text-muted">
-            A background remover and image color picker that run in your
-            browser, plus CSS unit and color converters, a word counter and a
-            password generator.
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>a]:h-full">
-            {utilityNav.map((u) => (
-              <ToolCard key={u.slug} tool={u} />
-            ))}
-          </div>
-        </section>
+        {/* Utility tool groups */}
+        {toolGroups.map((g) => (
+          <section key={g.id} id={g.id} aria-labelledby={`${g.id}-heading`} className="scroll-mt-24 pt-24">
+            <h2
+              id={`${g.id}-heading`}
+              className="font-display text-4xl tracking-tight sm:text-5xl"
+            >
+              {g.heading}
+            </h2>
+            <p className="mt-3 max-w-[56ch] text-muted">{g.description}</p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>a]:h-full">
+              {utilityNav
+                .filter((u) => g.slugs.includes(u.slug))
+                .map((u) => (
+                  <ToolCard key={u.slug} tool={u} />
+                ))}
+            </div>
+          </section>
+        ))}
 
         {/* Why */}
         <section aria-labelledby="why-heading" className="pt-24">

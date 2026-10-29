@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { CopyToClipboard } from "../CopyToClipboard";
 
 const input =
@@ -53,8 +54,47 @@ function Swatch({ color }: { color: string }) {
   );
 }
 
-export function ColorConverter({ mode }: { mode: "hex-to-rgb" | "rgb-to-hex" }) {
-  return mode === "hex-to-rgb" ? <HexToRgb /> : <RgbToHex />;
+type ColorMode = "hex-to-rgb" | "rgb-to-hex";
+
+const TABS: { mode: ColorMode; label: string }[] = [
+  { mode: "hex-to-rgb", label: "HEX to RGB" },
+  { mode: "rgb-to-hex", label: "RGB to HEX" },
+];
+
+export function ColorConverter({ initialMode = "hex-to-rgb" }: { initialMode?: ColorMode }) {
+  const uid = useId();
+  const [mode, setMode] = useState<ColorMode>(initialMode);
+
+  return (
+    <div>
+      <div role="tablist" aria-label="Conversion direction" className="mb-4 inline-flex rounded-xl border border-line-strong bg-surface p-1">
+        {TABS.map((t) => (
+          <button
+            key={t.mode}
+            type="button"
+            role="tab"
+            id={`${uid}-${t.mode}-tab`}
+            aria-selected={mode === t.mode}
+            aria-controls={`${uid}-panel`}
+            onClick={() => setMode(t.mode)}
+            className="h-10 rounded-lg px-4 text-sm font-medium text-muted transition-colors hover:text-ink aria-selected:bg-accent aria-selected:text-accent-ink"
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+      <div role="tabpanel" id={`${uid}-panel`} aria-labelledby={`${uid}-${mode}-tab`}>
+        {mode === "hex-to-rgb" ? <HexToRgb /> : <RgbToHex />}
+      </div>
+    </div>
+  );
+}
+
+/** Reads ?from=rgb&to=hex so redirects from the old single-purpose URLs land on the right direction. Needs a Suspense boundary. */
+export function ColorConverterFromUrl() {
+  const params = useSearchParams();
+  const mode: ColorMode = params.get("from") === "rgb" ? "rgb-to-hex" : "hex-to-rgb";
+  return <ColorConverter key={mode} initialMode={mode} />;
 }
 
 function HexToRgb() {
