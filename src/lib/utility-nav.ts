@@ -26,6 +26,13 @@ export const utilityNav: UtilityNav[] = [
     isNew: true,
   },
   {
+    slug: "image-flipper",
+    name: "Image Flipper & Rotator",
+    shortDescription: "Flip, mirror and rotate an image, then download it. Nothing is uploaded.",
+    icon: "flip",
+    isNew: true,
+  },
+  {
     slug: "image-color-picker",
     name: "Image Color Picker",
     shortDescription: "Click anywhere on an image to get its exact HEX and RGB color.",

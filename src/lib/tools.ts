@@ -13,7 +13,8 @@ export type IconName =
   | "key"
   | "sparkles"
   | "eraser"
-  | "pipette";
+  | "pipette"
+  | "flip";
 
 export interface Tool {
   slug: string;

@@ -308,6 +308,56 @@ export const utilityContent: Record<string, UtilityContent> = {
       { q: "Can I use the cut-out commercially?", a: "The tool does not claim any rights to your images. You are responsible for having the right to use the original photo and to publish the result." },
     ],
   },
+  "image-flipper": {
+    slug: "image-flipper",
+    name: "Image Flipper & Rotator",
+    seoTitle: "Image Flipper - Flip & Mirror Images Online Free",
+    seoDescription:
+      "Flip, mirror and rotate any image online for free. Flip horizontally or vertically, rotate 90 degrees, and download. Runs in your browser, nothing is uploaded.",
+    keywords: [
+      "image flipper",
+      "flip image online",
+      "mirror image online",
+      "flip image horizontally",
+      "rotate image online",
+      "flip photo",
+    ],
+    intro:
+      "Flip an image horizontally or vertically, or rotate it 90 degrees, and see the result instantly. Download it when it looks right.",
+    what: {
+      heading: "What is an Image Flipper?",
+      paragraphs: [
+        "An image flipper is a tool that mirrors a picture along its horizontal or vertical axis. A horizontal flip swaps left and right, like looking at the image in a mirror. A vertical flip swaps top and bottom. This tool also rotates the image a quarter turn at a time, so one page covers the most common orientation fixes.",
+        "People use it to correct selfies that were mirrored by the front camera, to turn a sideways phone photo upright, to flip a product shot so it faces the right way in a layout, or to create a mirrored version of a graphic. Because it works on a canvas in your browser, the image never leaves your device and there is no upload to wait for.",
+      ],
+    },
+    steps: [
+      { title: "Add your image", body: "Drag a PNG, JPG or WebP file onto the upload area or click it to choose one. Files up to 20 MB are supported." },
+      { title: "Flip or rotate", body: "Press Flip horizontal or Flip vertical to mirror the picture, or Rotate left and Rotate right to turn it 90 degrees. The preview updates instantly and you can combine as many steps as you like." },
+      { title: "Download the result", body: "Press Download Image to save the transformed picture at its full original resolution, in the same format you uploaded. Use Reset changes to start over." },
+    ],
+    formulas: {
+      heading: "How to mirror an image online",
+      paragraphs: [
+        "Mirroring takes three quick steps: upload the picture, press Flip horizontal, and download it. The flip happens on an HTML canvas on your own device, so the pixels are rearranged, not re-compressed or resized, and the output keeps the original dimensions (swapped if you rotated a quarter turn).",
+        "The buttons always act on what you see. If you rotate the picture a quarter turn and then press Flip horizontal, the preview mirrors left to right, exactly as it looks on screen. JPG files are saved as JPG and WebP as WebP, and PNG files keep their transparency.",
+      ],
+      formulas: [
+        "Flip horizontal: x' = width − x",
+        "Flip vertical: y' = height − y",
+        "Rotate 90° clockwise: (x, y) → (height − y, x)",
+      ],
+    },
+    faqs: [
+      { q: "How do I flip an image horizontally?", a: "Upload the image and press Flip horizontal. The preview mirrors left to right straight away. Then press Download Image to save it." },
+      { q: "What is the difference between flipping and rotating?", a: "Flipping creates a mirror image, so text reads backwards. Rotating turns the picture around its centre without mirroring it. This tool offers both." },
+      { q: "Is my image uploaded to a server?", a: "No. The image is processed entirely in your browser using a canvas, so it never leaves your device." },
+      { q: "Does flipping reduce image quality?", a: "No. The pixels are simply rearranged and the image is saved at its full original size. JPG and WebP files are re-encoded at high quality, and PNG stays lossless." },
+      { q: "Which image formats are supported?", a: "PNG, JPG and WebP up to 20 MB. The downloaded file uses the same format as the one you uploaded." },
+      { q: "Can I flip and rotate the same image?", a: "Yes. Apply any combination of flips and 90 degree turns, in any order, and the preview shows the combined result. Reset changes returns to the original." },
+      { q: "Why does my selfie look mirrored?", a: "Many front cameras show and sometimes save a mirrored image. Flipping it horizontally restores the way other people see you." },
+    ],
+  },
   "image-color-picker": {
     slug: "image-color-picker",
     name: "Image Color Picker",

@@ -48,8 +48,8 @@ const toolGroups = [
     id: "image-tools",
     heading: "Image tools",
     description:
-      "Image utilities that run in your browser, so your pictures stay on your device: cut out a background or pick exact colors from any photo.",
-    slugs: ["bg-remover", "image-color-picker"],
+      "Image utilities that run in your browser, so your pictures stay on your device: cut out a background, flip and rotate a photo, or pick exact colors from it.",
+    slugs: ["bg-remover", "image-flipper", "image-color-picker"],
   },
   {
     id: "dev-tools",

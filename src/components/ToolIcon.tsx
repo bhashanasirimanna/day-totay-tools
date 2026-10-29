@@ -3,6 +3,7 @@ import {
   Eraser,
   Combine,
   FileImage,
+  FlipHorizontal2,
   FileText,
   KeyRound,
   Maximize,
@@ -34,6 +35,7 @@ const icons = {
   eraser: Eraser,
   pipette: Pipette,
   sparkles: Sparkles,
+  flip: FlipHorizontal2,
 } satisfies Record<IconName, React.ComponentType<LucideProps>>;
 
 export function ToolIcon({
