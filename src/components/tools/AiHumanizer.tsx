@@ -2,7 +2,8 @@
 
 import { useId, useMemo, useRef, useState } from "react";
 import { Eraser, LoaderCircle, Sparkles } from "lucide-react";
-import { estimateAiScore, findAiTerms, MIN_WORDS_FOR_SCORE } from "@/lib/ai-score";
+import { toPlainText } from "@/lib/plain-text";
+import { analyzeAiText, findAiTerms, MIN_WORDS_FOR_SCORE, type AiFactors } from "@/lib/ai-score";
 import { CopyToClipboard } from "../CopyToClipboard";
 
 const TONES = ["Professional", "Casual", "Engaging", "Academic"] as const;
@@ -26,6 +27,19 @@ function verdict(score: number) {
   if (score >= 70) return "Reads as machine-written";
   if (score >= 40) return "Reads as mixed";
   return "Reads as human-written";
+}
+
+/** Plain-language read of each measured factor, so the score is explainable rather than a black box. */
+function factorSummary(f: AiFactors, formalTone: boolean) {
+  const level = (v: number, lo: string, mid: string, hi: string) => (v < 0.34 ? lo : v < 0.67 ? mid : hi);
+  return [
+    { label: "Sentence rhythm", value: level(f.rhythm, "varied", "somewhat even", "flat"), ai: f.rhythm >= 0.67 },
+    { label: "AI buzzwords", value: String(f.buzzwords), ai: f.buzzwords >= 3 },
+    { label: "Generic wording", value: level(f.generic, "low", "medium", "high"), ai: f.generic >= 0.67 },
+    formalTone
+      ? { label: "Personal voice", value: "not expected in a formal tone", ai: false }
+      : { label: "Personal voice", value: level(f.voice, "natural", "some", "none"), ai: f.voice >= 0.67 },
+  ];
 }
 
 const RADIUS = 34;
@@ -157,7 +171,11 @@ export function AiHumanizer() {
   const inCount = useMemo(() => count(input), [input]);
   const outCount = useMemo(() => count(output), [output]);
   const tooLong = inCount.characters > MAX_CHARS;
-  const inScore = useMemo(() => estimateAiScore(input), [input]);
+  // The pasted text is scored as it is, on the standard baseline. Only the result is judged against the chosen tone:
+  // formal tones are scored against a formal baseline, since reports and essays have no personal voice by design.
+  const formalTone = tone === "Professional" || tone === "Academic";
+  const inAnalysis = useMemo(() => analyzeAiText(input), [input]);
+  const inScore = inAnalysis?.score ?? null;
   const { segments, flagged } = useMemo(() => {
     const matches = findAiTerms(input);
     const out: { text: string; hit: boolean }[] = [];
@@ -171,7 +189,8 @@ export function AiHumanizer() {
     const unique = [...new Set(matches.map((m) => input.slice(m.start, m.end).toLowerCase()))];
     return { segments: out, flagged: { count: matches.length, unique } };
   }, [input]);
-  const outScore = useMemo(() => estimateAiScore(output), [output]);
+  const outAnalysis = useMemo(() => analyzeAiText(output, { formalTone }), [output, formalTone]);
+  const outScore = outAnalysis?.score ?? null;
 
   async function humanize() {
     if (loading || !input.trim() || tooLong) return;
@@ -185,7 +204,8 @@ export function AiHumanizer() {
       });
       const data: { result?: string; error?: string } = await res.json().catch(() => ({}));
       if (!res.ok || !data.result) throw new Error(data.error || "Something went wrong. Please try again.");
-      setOutput(data.result);
+      // Defence in depth: the server already cleans this, but never trust the wire.
+      setOutput(toPlainText(data.result));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
     } finally {
@@ -199,7 +219,10 @@ export function AiHumanizer() {
         <label htmlFor={`${id}-in`} className="text-base font-semibold text-ink">
           Paste your AI-generated text
         </label>
-        <ScoreChip score={inScore} pending={`Paste ${MIN_WORDS_FOR_SCORE}+ words to score`} />
+        <ScoreChip
+          score={inScore}
+          pending={inCount.words >= MIN_WORDS_FOR_SCORE ? "Scoring works on English text" : `Paste ${MIN_WORDS_FOR_SCORE}+ words to score`}
+        />
       </div>
       <HighlightedTextarea id={`${id}-in`} value={input} onChange={setInput} segments={segments} />
       <p aria-live="polite" className={`mt-2 text-sm tabular-nums ${tooLong ? "text-danger" : "text-muted"}`}>
@@ -283,6 +306,15 @@ export function AiHumanizer() {
       {output && outScore !== null && (
         <div className="mt-4">
           <ScoreMeter score={outScore} />
+          {outAnalysis && (
+            <ul className="mt-3 flex flex-wrap justify-center gap-x-5 gap-y-1 text-xs text-muted">
+              {factorSummary(outAnalysis.factors, formalTone).map((f) => (
+                <li key={f.label}>
+                  {f.label}: <span className={f.ai ? "font-medium text-danger" : "font-medium text-ink"}>{f.value}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
       <textarea
@@ -297,7 +329,7 @@ export function AiHumanizer() {
         {outCount.words} words · {outCount.characters} characters
       </p>
       <div className="mt-4">
-        <CopyToClipboard value={output} label="Copy to Clipboard" />
+        <CopyToClipboard value={toPlainText(output)} label="Copy to Clipboard" />
       </div>
       <p className="mt-4 text-xs leading-relaxed text-muted">
         Scores are a quick estimate based on writing patterns such as stock phrases, sentence rhythm and
