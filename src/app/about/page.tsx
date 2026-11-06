@@ -110,11 +110,7 @@ export default function AboutPage() {
         <Link href="/contact" className={link}>
           contact page
         </Link>{" "}
-        or write to us at{" "}
-        <a className={link} href={`mailto:${site.email}`}>
-          {site.email}
-        </a>
-        .
+        to send us a message.
       </p>
     </ProsePage>
   );

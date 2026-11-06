@@ -45,8 +45,8 @@ export default function PrivacyPage() {
       </p>
       <h3>Files you share with us</h3>
       <p>
-        If you email us a file, we use it only to respond to you and delete it when the matter is
-        resolved.
+        If you send us a file or message, we use it only to respond to you and delete it when the
+        matter is resolved.
       </p>
 
       <h2>Information we collect</h2>
@@ -133,7 +133,7 @@ export default function PrivacyPage() {
       <h2>Retention and security</h2>
       <p>
         Browser based tools keep nothing on our side. Aggregated analytics are retained for as long as
-        the analytics provider’s standard settings allow. Emails you send us are kept for as long as
+        the analytics provider’s standard settings allow. Messages you send us are kept for as long as
         needed to handle your request. The site is served over HTTPS and we limit the data we handle,
         but no method of transmission or storage is completely secure.
       </p>
@@ -142,11 +142,11 @@ export default function PrivacyPage() {
       <p>
         Depending on where you live, you may have the right to access, correct or delete personal
         data we hold about you, to object to or restrict its processing, and to withdraw consent. You
-        can block or delete cookies in your browser settings. To make a request, email{" "}
-        <a className={link} href={`mailto:${site.email}`}>
-          {site.email}
-        </a>{" "}
-        with the subject line “Privacy request”. We will respond within a reasonable time.
+        can block or delete cookies in your browser settings. To make a request, use our{" "}
+        <Link href="/contact" className={link}>
+          contact form
+        </Link>{" "}
+        and start your message with “Privacy request”. We will respond within a reasonable time.
       </p>
 
       <h2>Children’s privacy</h2>
@@ -168,11 +168,7 @@ export default function PrivacyPage() {
 
       <h2>Contact</h2>
       <p>
-        Questions about this policy can be sent to{" "}
-        <a className={link} href={`mailto:${site.email}`}>
-          {site.email}
-        </a>{" "}
-        or through our{" "}
+        Questions about this policy can be sent through our{" "}
         <Link href="/contact" className={link}>
           contact page
         </Link>

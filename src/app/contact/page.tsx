@@ -18,19 +18,10 @@ export default function ContactPage() {
       title="Contact Us"
       intro="Questions, bug reports and ideas for new tools are all welcome. We read every message."
     >
-      <h2>Email</h2>
-      <p>
-        The fastest way to reach us is by email at{" "}
-        <a className={link} href={`mailto:${site.email}`}>
-          {site.email}
-        </a>
-        . We usually reply within a few working days.
-      </p>
-
       <h2>Send a message</h2>
       <p>
-        Fill in the form below and we will receive your message directly. Your details are used only
-        to reply to you.
+        The contact form below is the way to reach us. We receive your message directly, use your
+        details only to reply, and usually respond within a few working days.
       </p>
       <ContactForm />
 
@@ -50,14 +41,14 @@ export default function ContactPage() {
           <Link href="/privacy-policy" className={link}>
             privacy policy
           </Link>{" "}
-          and email us with the subject line “Privacy request”.
+          and start your message with “Privacy request”.
         </li>
         <li>
-          <strong>Advertising and partnership enquiries.</strong> Email us with a short description
+          <strong>Advertising and partnership enquiries.</strong> Use the form to send a short description
           of what you have in mind.
         </li>
         <li>
-          <strong>Copyright or content concerns.</strong> Email us with the page address and a
+          <strong>Copyright or content concerns.</strong> Use the form to send the page address and a
           description of the issue and we will respond promptly.
         </li>
       </ul>

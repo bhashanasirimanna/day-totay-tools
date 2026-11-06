@@ -113,11 +113,7 @@ export default function TermsOfServicePage() {
 
       <h2>12. Contact</h2>
       <p>
-        Questions about these terms can be sent to{" "}
-        <a className={link} href={`mailto:${site.email}`}>
-          {site.email}
-        </a>{" "}
-        or through our{" "}
+        Questions about these terms can be sent through our{" "}
         <Link href="/contact" className={link}>
           contact page
         </Link>
