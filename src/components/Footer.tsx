@@ -6,10 +6,10 @@ import { site } from "@/lib/site";
 import { Wordmark } from "./Header";
 
 const legal = [
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-  { href: "/privacy-policy", label: "Privacy policy" },
-  { href: "/terms-of-service", label: "Terms of service" },
+  { href: "/about", label: "About Us" },
+  { href: "/contact", label: "Contact Us" },
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/terms-of-service", label: "Terms & Conditions" },
 ];
 
 const linkClass =

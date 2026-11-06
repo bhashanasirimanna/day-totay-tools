@@ -19,6 +19,15 @@ export interface UtilityContent {
     table?: { caption: string; headers: string[]; rows: string[][] };
   };
   faqs: { q: string; a: string }[];
+  /** Optional long-form guide rendered after the FAQ: H2 sections, each with optional H3 subsections. */
+  guide?: {
+    heading: string;
+    sections: {
+      heading: string;
+      paragraphs: string[];
+      subsections?: { heading: string; paragraphs: string[] }[];
+    }[];
+  };
 }
 
 const r = (n: number, d = 4) => formatNumber(Number(n.toFixed(d)));
@@ -74,6 +83,103 @@ export const utilityContent: Record<string, UtilityContent> = {
       { q: "How much text can I humanize at once?", a: "Up to 5,000 characters per request, which is roughly 800 words. For longer documents, process them in sections." },
       { q: "Which tone should I choose?", a: "Professional suits emails and reports, Casual suits social posts and chatty blogs, Engaging suits marketing copy, and Academic suits essays and formal writing." },
     ],
+    guide: {
+      heading: "The complete guide to humanizing AI text",
+      sections: [
+        {
+          heading: "How AI humanizing works",
+          paragraphs: [
+            "Large language models write by predicting the most likely next word. That makes their output fluent, but also statistically smooth: sentences land at similar lengths, vocabulary stays safe, and ideas arrive in a predictable order. Humanizing is the process of reintroducing the irregularity that real writers produce without thinking about it.",
+          ],
+          subsections: [
+            {
+              heading: "Why AI text feels flat",
+              paragraphs: [
+                "Detectors and attentive readers look at the same signals. Low variation in sentence length, heavy use of connectors such as “moreover” and “in conclusion”, hedged and generic claims, and paragraphs that all follow the same shape are the most common giveaways. None of these is proof of anything on its own, but together they create a recognisable rhythm.",
+              ],
+            },
+            {
+              heading: "What this tool changes",
+              paragraphs: [
+                "The humanizer asks a language model to act as an experienced editor. It shortens or merges sentences to vary the pace, replaces stock phrases with plain wording, removes filler, and adjusts the voice to the tone you pick. A built in score estimates how machine like the original and the rewrite read, and highlights phrases that tend to raise suspicion so you can see what changed and why.",
+                "The output is also cleaned automatically. Dashes, emoji and markdown symbols are stripped so the text pastes cleanly into an email, a document or a content management system.",
+              ],
+            },
+            {
+              heading: "What it cannot do",
+              paragraphs: [
+                "A humanizer cannot add knowledge, check facts or supply your personal experience. If the draft is vague, the rewrite will be a smoother version of vague. Treat the result as a strong second draft that you review, correct and personalise.",
+              ],
+            },
+          ],
+        },
+        {
+          heading: "Why this matters for students and writers",
+          paragraphs: [
+            "AI assistance is now part of everyday writing. Used well, it helps people overcome a blank page, structure an argument or write in a second language. The trouble starts when polished but impersonal text is mistaken for something dishonest, or when it genuinely is passed off in a setting that forbids it.",
+          ],
+          subsections: [
+            {
+              heading: "Detectors are imperfect",
+              paragraphs: [
+                "AI detectors produce probabilities, not proof. They are known to flag work by non native English speakers, formal academic prose and heavily edited text as machine written. A student who wrote an essay themselves can be accused unfairly, and revising text so it reads more naturally is a legitimate way to reduce that risk.",
+              ],
+            },
+            {
+              heading: "Use it honestly",
+              paragraphs: [
+                "Ethical use means following the rules of your school, employer or publisher. If a course bans AI assistance, a humanizer does not make breaking that rule acceptable. If AI use is allowed with disclosure, disclose it. The tool is intended to improve the quality and voice of writing you are entitled to produce, not to misrepresent authorship where honesty is required.",
+                "Writers, marketers and small businesses have a simpler motive: readers trust text that sounds like a person. Natural writing earns attention, and attention is what search engines and audiences reward.",
+              ],
+            },
+          ],
+        },
+        {
+          heading: "Tips for writing naturally",
+          paragraphs: [
+            "Whether you use a tool or edit by hand, the same craft habits make text sound human.",
+          ],
+          subsections: [
+            {
+              heading: "Vary rhythm and structure",
+              paragraphs: [
+                "Mix short sentences with longer ones. Start some sentences with the subject, others with a detail or a question. Let a paragraph be one line when the point is simple.",
+              ],
+            },
+            {
+              heading: "Be specific",
+              paragraphs: [
+                "Replace general statements with a number, a name, a place or a small story. Specific detail is the clearest sign that a real person was involved, and it is something a model cannot invent on your behalf.",
+              ],
+            },
+            {
+              heading: "Cut the stock phrases",
+              paragraphs: [
+                "Phrases such as “in today’s fast paced world”, “it is important to note” and “delve into” add length but no meaning. Delete them and see whether the sentence still works. Usually it works better.",
+              ],
+            },
+            {
+              heading: "Add your own voice",
+              paragraphs: [
+                "State an opinion, admit a doubt, or use a contraction. Read the final text aloud. Anywhere you stumble or feel stiff, rewrite it the way you would say it to a colleague.",
+              ],
+            },
+            {
+              heading: "Always review the output",
+              paragraphs: [
+                "Check names, figures and claims against your source. Humanized text should keep your meaning, but you are the author and the person responsible for what is published or submitted.",
+              ],
+            },
+          ],
+        },
+        {
+          heading: "Privacy and limits of this tool",
+          paragraphs: [
+            "Text you submit is sent securely to an AI provider only to produce the rewrite and is not stored by ToolBunch. Each request is limited to 5,000 characters, so long documents should be processed in sections. Avoid pasting confidential, personal or regulated information. See our privacy policy for details.",
+          ],
+        },
+      ],
+    },
   },
   "css-unit-converter": {
     slug: "css-unit-converter",

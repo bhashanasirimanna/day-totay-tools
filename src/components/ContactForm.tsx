@@ -1,18 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { site } from "@/lib/site";
 
 const field =
   "mt-1.5 block w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-[15px] text-ink focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";
 
-/** Placeholder UI: nothing is sent anywhere yet. Wire onSubmit to a route handler or email service before relying on it. */
+/** Opens the visitor's email client with the message prefilled. No data is sent to our servers. */
 export function ContactForm() {
   const [sent, setSent] = useState(false);
 
   if (sent) {
     return (
       <p role="status" className="rounded-2xl border border-line bg-surface-2 p-5 text-[15px]">
-        Thanks for your message. This form is a demo for now, so please email us directly.
+        Your email app should have opened with your message ready to send. If it did not, please write to us directly at {site.email}.
       </p>
     );
   }
@@ -22,6 +23,15 @@ export function ContactForm() {
       className="not-prose mt-5 space-y-4"
       onSubmit={(e) => {
         e.preventDefault();
+        const data = new FormData(e.currentTarget);
+        const name = String(data.get("name") ?? "");
+        const email = String(data.get("email") ?? "");
+        const message = String(data.get("message") ?? "");
+        const subject = encodeURIComponent(`${site.name} message from ${name}`);
+        const body = encodeURIComponent(`${message}
+
+From: ${name} (${email})`);
+        window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
         setSent(true);
       }}
     >

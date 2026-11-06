@@ -140,6 +140,27 @@ export function UtilityPage({ slug, tool }: { slug: string; tool: React.ReactNod
             </details>
           ))}
         </div>
+
+        {c.guide && (
+          <>
+            {c.guide.sections.map((sec) => (
+              <section key={sec.heading}>
+                <h2>{sec.heading}</h2>
+                {sec.paragraphs.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+                {sec.subsections?.map((sub) => (
+                  <div key={sub.heading}>
+                    <h3>{sub.heading}</h3>
+                    {sub.paragraphs.map((p) => (
+                      <p key={p}>{p}</p>
+                    ))}
+                  </div>
+                ))}
+              </section>
+            ))}
+          </>
+        )}
       </ConverterLayout>
     </>
   );
