@@ -63,7 +63,8 @@ export default function PrivacyPage() {
         </li>
         <li>
           Information you choose to send us, such as your name, email address and message when you
-          contact us.
+          use the contact form. The form is processed by Web3Forms, which delivers the message to us
+          by email.
         </li>
         <li>Your light or dark theme choice, stored in your browser so the site remembers it.</li>
       </ul>
@@ -124,8 +125,8 @@ export default function PrivacyPage() {
 
       <h2>Third party services</h2>
       <p>
-        We rely on providers for hosting and analytics (Vercel), advertising (Google AdSense) and AI
-        text processing (Groq). Each processes data under its own privacy policy, and we encourage
+        We rely on providers for hosting and analytics (Vercel), advertising (Google AdSense) AI
+        text processing (Groq) and contact form delivery (Web3Forms). Each processes data under its own privacy policy, and we encourage
         you to read them. Links from our site to other websites are not covered by this policy.
       </p>
 

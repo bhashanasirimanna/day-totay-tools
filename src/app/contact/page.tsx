@@ -29,8 +29,8 @@ export default function ContactPage() {
 
       <h2>Send a message</h2>
       <p>
-        Fill in the form below and your email app will open with the message ready to send. Nothing
-        is stored on our servers by the form itself.
+        Fill in the form below and we will receive your message directly. Your details are used only
+        to reply to you.
       </p>
       <ContactForm />
 
