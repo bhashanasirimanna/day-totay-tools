@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import { ConverterLayout } from "@/components/ConverterLayout";
@@ -144,20 +145,20 @@ export function UtilityPage({ slug, tool }: { slug: string; tool: React.ReactNod
         {c.guide && (
           <>
             {c.guide.sections.map((sec) => (
-              <section key={sec.heading}>
+              <Fragment key={sec.heading}>
                 <h2>{sec.heading}</h2>
                 {sec.paragraphs.map((p) => (
                   <p key={p}>{p}</p>
                 ))}
                 {sec.subsections?.map((sub) => (
-                  <div key={sub.heading}>
+                  <Fragment key={sub.heading}>
                     <h3>{sub.heading}</h3>
                     {sub.paragraphs.map((p) => (
                       <p key={p}>{p}</p>
                     ))}
-                  </div>
+                  </Fragment>
                 ))}
-              </section>
+              </Fragment>
             ))}
           </>
         )}
